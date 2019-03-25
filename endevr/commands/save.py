@@ -9,6 +9,7 @@ class Save(Base):
         print('You supplied the following options:', dumps(self.options, indent=2, sort_keys=True))
         save_layout(self.options.name)
 
+
     def save_layout(self, name):
         '''
             Saves the current layout and adds it to the layouts.json file
