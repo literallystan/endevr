@@ -11,6 +11,7 @@ class Base(object):
         gi.require_version('Wnck', '3.0')
         from gi.repository import Wnck
 
+
     def check_name(self, name):
         '''
             Check if the name already exists in the layouts.json
@@ -23,6 +24,7 @@ class Base(object):
             if name in layouts:
                 return True
         return False
+
 
     def clean_name(self, window):
         '''
@@ -38,6 +40,7 @@ class Base(object):
             app = 'gnome-terminal'
 
         return app.split()[-1]
+
 
     def run(self):
         raise NotImplementedError('Must be used with a ')
