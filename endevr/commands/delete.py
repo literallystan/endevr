@@ -1,5 +1,8 @@
+from json import dumps
+from .base import Base
+
 class Delete(Base):
-    """Say hello, world!"""
+    '''Delete a saved layout'''
 
     def run(self):
         print('Delete, world!')

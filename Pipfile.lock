@@ -18,7 +18,6 @@
     "default": {
         "docopt": {
             "hashes": [
-                "sha256:443ce79888b7cd1872129a15a0c9942c769b01807f3b339ead7686ca9b0214bb",
                 "sha256:49b3a825280bd66b3aa83585ef59c4a8c82f2c8a522dbe754a8bc8d08c85c491"
             ],
             "index": "pypi",

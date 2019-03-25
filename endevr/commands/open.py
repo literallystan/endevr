@@ -1,3 +1,6 @@
+from json import dumps
+from .base import Base
+
 class Open(Base):
     """Say hello, world!"""
 

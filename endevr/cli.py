@@ -5,7 +5,7 @@ Usage:
     endevr save <name>
     endevr update <name>
     endevr open <name>
-    endevr delete <name
+    endevr delete <name>
 
 Options:
     -h --help   Show this screen.

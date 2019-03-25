@@ -1,5 +1,8 @@
+from json import dumps
+from .base import Base
+
 class Update(Base):
-    """Say hello, world!"""
+    """Update a previously existing layout"""
 
     def run(self):
         print('Update, world!')
