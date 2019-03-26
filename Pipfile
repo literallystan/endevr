@@ -7,6 +7,8 @@ verify_ssl = true
 
 [packages]
 docopt = "*"
+vext = "*"
+vext-gi = "*"
 
 [requires]
 python_version = "3.6"

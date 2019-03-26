@@ -1,4 +1,5 @@
-''' The base command '''
+import json
+import os
 
 class Base(object):
     ''' A base command '''
@@ -7,21 +8,13 @@ class Base(object):
         self.options = options
         self.args = args
         self.kwargs = kwargs
-        import gi
-        gi.require_version('Wnck', '3.0')
-        from gi.repository import Wnck
-
 
     def check_name(self, name):
         '''
-            Check if the name already exists in the layouts.json
+            Check if the name already exists in the layouts folder
         '''
-        with open('layouts.json', 'r') as f:
-            try:
-                layouts = json.load(f)
-            except json.decoder.JSONDecodeError as e:
-                return False
-            if name in layouts:
+        for file in os.listdir('layouts'):
+            if file.startswith(name):
                 return True
         return False
 
@@ -43,4 +36,4 @@ class Base(object):
 
 
     def run(self):
-        raise NotImplementedError('Must be used with a ')
+        raise NotImplementedError('Must be used with a command')

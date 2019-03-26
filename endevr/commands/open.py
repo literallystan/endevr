@@ -1,12 +1,17 @@
-from json import dumps
 from .base import Base
+from subprocess import Popen
+import json
+import time
+import gi
+gi.require_version('Wnck', '3.0')
+from gi.repository import Wnck
 
 class Open(Base):
     '''Open a saved layout'''
 
     def run(self):
         print('Open, world!')
-        print('You supplied the following options:', dumps(self.options, indent=2, sort_keys=True))
+        self.open_layout(self.options['<name>'])
 
 
     def open_layout(self, name):
@@ -14,12 +19,12 @@ class Open(Base):
             Opens the given layout and sets their positions, assumes lower cased names
         '''
 
-        if not check_name(name):
+        if not self.check_name(name):
             print('no such layout')
             return
 
         #close_windows()
-        with open('layouts.json', 'r') as f:
+        with open('layouts/' + name + '.json', 'r') as f:
             try:
                 layout = json.load(f)[name]
                 for app in layout:
@@ -27,7 +32,7 @@ class Open(Base):
                         proc = Popen([name], stdout=open('/dev/null'), stderr=open('/dev/null'), shell=False)
                 #wait for Popen to finish, not a good way to do this
                 time.sleep(5)
-                position_windows(layout)
+                self.position_windows(layout)
             except json.decoder.JSONDecodeError:
                 print('error decoding json')
 
@@ -38,7 +43,7 @@ class Open(Base):
         windows = screen.get_windows()
 
         for window in windows:
-            app = clean_name(window)
+            app = self.clean_name(window)
             print(app)
             for i in range(len(layout)):
                 if app in layout[i]:

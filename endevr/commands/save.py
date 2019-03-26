@@ -1,14 +1,11 @@
-from json import dumps
 from .base import Base
+import json
+import gi
+gi.require_version('Wnck', '3.0')
+from gi.repository import Wnck
 
 class Save(Base):
     """Save current layout"""
-
-    def run(self):
-        print('Save, world!')
-        print('You supplied the following options:', dumps(self.options, indent=2, sort_keys=True))
-        save_layout(self.options.name)
-
 
     def save_layout(self, name):
         '''
@@ -16,7 +13,7 @@ class Save(Base):
             to be loaded later
         '''
 
-        if check_name(name):
+        if self.check_name(name):
             print('Name already exists, try another one')
             return
 
@@ -26,9 +23,9 @@ class Save(Base):
 
         layout = {}
         layout[name] = []
-        with open('layouts.json', 'a') as f:
+        with open('layouts/' + name + '.json', 'a') as f:
             for w in windows:
-                app = clean_name(w)
+                app = self.clean_name(w)
 
                 if 'desktop' in app:
                     continue
@@ -43,3 +40,10 @@ class Save(Base):
 
             json.dump(layout, f)
             f.write('\n')
+
+
+    def run(self):
+        print('Save, world!')
+        #print('You supplied the following options:', json.dumps(self.options, indent=2, sort_keys=True))
+        print(self.options['<name>'])
+        self.save_layout(self.options['<name>'])

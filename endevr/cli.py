@@ -6,6 +6,7 @@ Usage:
     endevr update <name>
     endevr open <name>
     endevr delete <name>
+    endevr list
 
 Options:
     -h --help   Show this screen.

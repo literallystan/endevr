@@ -1,5 +1,8 @@
-from json import dumps
 from .base import Base
+import json
+import gi
+gi.require_version('Wnck', '3.0')
+from gi.repository import Wnck
 
 class Update(Base):
     """Update a previously existing layout"""
